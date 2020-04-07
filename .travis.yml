@@ -1,0 +1,13 @@
+#permission
+sudo: required
+#we need running docker
+service:
+  - docker
+
+#byild from Dockerfile.dev
+before_install:
+  - docker build -t imansamboo/docker-nginx-node -f Dockerfile.dev .
+
+# how to run test
+script:
+  - docker run imansamboo/docker-nginx-node npm run test -- --coverage
